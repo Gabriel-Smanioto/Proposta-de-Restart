@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O Novo Capítulo | Startup Restart</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400&display=swap');
+
+        :root {
+            --apple-dark: #000000;
+            --apple-gray: #1d1d1f;
+            --apple-text: #f5f5f7;
+            --accent-blue: #2997ff;
+            --accent-purple: #bf5af2;
+            --accent-gradient: linear-gradient(135deg, #2997ff 0%, #bf5af2 100%);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--apple-dark);
+            color: var(--apple-text);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- DINAMIC TEXT SCROLLER --- */
+        .scroller-container {
+            display: inline-block;
+            height: 1.2em;
+            overflow: hidden;
+            vertical-align: bottom;
+            position: relative;
+            transition: width 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+            text-align: left;
+        }
+
+        .scroller-list {
+            display: block;
+            position: relative;
+            top: 0;
+            transition: top 0.8s cubic-bezier(0.76, 0, 0.24, 1);
+        }
+
+        .scroller-item {
+            display: block;
+            height: 1.2em;
+            line-height: 1.2em;
+            white-space: nowrap;
+        }
+
+        /* --- ESTILOS GERAIS --- */
+        .noise-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 50; opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        .text-gradient {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+
+        .glass-card {
+            background: rgba(29, 29, 31, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .glass-card:hover { transform: scale(1.02); }
+
+        .blob { position: absolute; filter: blur(80px); opacity: 0.3; z-index: -1; }
+
+        .btn-apple {
+            background: var(--apple-text);
+            color: var(--apple-dark);
+            transition: all 0.3s ease;
+        }
+
+        html { scroll-behavior: smooth; }
+    </style>
+</head>
+<body class="relative">
+
+    <div class="noise-overlay"></div>
+
+    <!-- BACKGROUND BLOBS -->
+    <div class="blob bg-blue-600 w-64 h-64 rounded-full top-10 left-[-50px]" id="blob1"></div>
+    <div class="blob bg-purple-600 w-96 h-96 rounded-full bottom-20 right-[-100px]" id="blob2"></div>
+
+    <nav class="fixed top-0 w-full z-50 px-6 py-4 flex justify-between items-center backdrop-blur-md bg-black/30 border-b border-white/5">
+        <div class="text-xl font-bold tracking-tight">Restart<span class="text-blue-500">.</span></div>
+        <a href="#contato" class="text-sm font-medium text-gray-300 hover:text-white transition font-semibold">Faça parte</a>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="min-h-screen flex flex-col justify-center items-center text-center px-6 relative overflow-hidden">
+        <div class="reveal active">
+            <span class="uppercase tracking-[0.3em] text-xs font-semibold text-gray-400 mb-4 block">Startup Restart</span>
+            <h1 class="text-5xl md:text-8xl font-bold tracking-tighter mb-6 leading-tight">
+                Começar...<br>
+                <span class="text-gradient">De novo!</span>
+            </h1>
+            <p class="text-lg md:text-2xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
+                Um convite para construir algo novo focado em tecnologia. Pés no chão, visão no futuro.
+            </p>
+        </div>
+        
+        <div class="absolute bottom-10 animate-bounce">
+            <i class="fas fa-chevron-down text-gray-500 text-xl"></i>
+        </div>
+    </header>
+
+    <!-- CONTEXTO -->
+    <section class="py-24 px-6 md:px-20 relative">
+        <div class="max-w-4xl mx-auto text-center reveal">
+            <div class="inline-block p-3 rounded-full bg-white/5 mb-6 border border-white/10">
+                <i class="fas fa-fingerprint text-purple-400 text-2xl"></i>
+            </div>
+            <h2 class="text-3xl md:text-5xl font-bold mb-8 text-white tracking-tight">O Contexto Real.</h2>
+            <p class="text-xl text-gray-300 leading-relaxed mb-6">
+                Muitos sabem que meu objetivo sempre foi empreender. Tentei antes e, honestamente, <strong
+                    class="text-white">os resultados foram 'interessantes'.</strong>
+            <p class="text-xl text-gray-400 leading-relaxed">
+                Erros aconteceram, <span class="text-red-400">principalmente da minha parte</span>. Eu assumo. <br>
+                Mas o desejo de criar algo relevante não mudou. A mentalidade sim. Hoje começamos do zero, sem ego, focados em resultado.
+            </p>
+        </div>
+    </section>
+
+    <!-- CICLO DE EVOLUÇÃO COM TEXTO DINÂMICO -->
+    <section class="py-24 px-6 bg-black relative overflow-hidden">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl md:text-7xl font-bold mb-16 text-center reveal text-white tracking-tight leading-tight flex flex-col md:flex-row items-center justify-center gap-x-4">
+                <span>Um Ciclo de</span>
+                <div class="scroller-container" id="scroller-box">
+                    <span class="scroller-list text-gradient" id="word-scroller">
+                        <span class="scroller-item">Inovação</span>
+                        <span class="scroller-item">Propósito</span>
+                        <span class="scroller-item">Crescimento</span>
+                        <span class="scroller-item">Impacto</span>
+                        <span class="scroller-item">Evolução</span>
+                        <span class="scroller-item">Reinvenção</span>
+                    </span>
+                </div>
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="glass-card rounded-[2rem] p-8 reveal">
+                    <div class="h-12 w-12 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center mb-6">
+                        <i class="fas fa-bolt text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2 text-white">1. Caixa Real</h3>
+                    <p class="text-gray-400">Prestação de serviço com excelência para validar o modelo e gerar receita imediata.</p>
+                </div>
+                <div class="glass-card rounded-[2rem] p-8 reveal">
+                    <div class="h-12 w-12 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-400 flex items-center justify-center mb-6">
+                        <i class="fas fa-chart-line text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2 text-white">2. Reinvestimento</h3>
+                    <p class="text-gray-400">O lucro volta para a estrutura. A empresa se alimenta e cresce de forma sustentável.</p>
+                </div>
+                <div class="glass-card rounded-[2rem] p-8 reveal">
+                    <div class="h-12 w-12 rounded-2xl bg-gradient-to-br from-orange-500 to-yellow-400 flex items-center justify-center mb-6">
+                        <i class="fas fa-rocket text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2 text-white">3. O Produto</h3>
+                    <p class="text-gray-400">Com maturidade e caixa, transformamos serviços em produtos escaláveis de tecnologia.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+     <!-- QUEM EU PROCURO -->
+    <section class="py-24 px-6 md:px-20 bg-gradient-to-b from-black to-gray-900">
+        <div class="max-w-4xl mx-auto reveal">
+            <h2 class="text-4xl md:text-6xl font-bold mb-12 tracking-tight">Se você recebeu isso <br><span
+                    class="text-gray-500">é porque você é um dos nossos.</span></h2>
+
+            <div class="space-y-8 text-lg text-gray-300">
+                <div class="flex items-start gap-4">
+                    <i class="fas fa-check-circle text-green-500 mt-1"></i>
+                    <p>Você é alguém que tem potencial e <span class="text-green-500">habilidades excepcionais.</span>
+                        Com certeza vai somar na equipe.</p>
+                </div>
+                <div class="flex items-start gap-4">
+                    <i class="fas fa-check-circle text-green-500 mt-1"></i>
+                    <p>Você é uma pessoa unica e exelente no que faz. <span class="text-green-500">Te escolhi por ser
+                            você.</span></p>
+                </div>
+                <div class="flex items-start gap-4">
+                    <i class="fas fa-check-circle text-green-500 mt-1"></i>
+                    <p>Você é quem entende o propósito dessa iniciativa. <span class="text-green-500">Quero você
+                            nessa!</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- CTA -->
+    <section id="contato" class="py-32 px-6 text-center relative overflow-hidden">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-600 rounded-full filter blur-[150px] opacity-15"></div>
+        <div class="relative z-10 reveal">
+            <h2 class="text-5xl md:text-8xl font-bold mb-8 tracking-tighter text-white leading-tight">Bora recomeçar?</h2>
+            <p class="text-xl text-gray-400 mb-12 max-w-xl mx-auto">
+                Não é sobre o que ficou para trás, mas sobre o que vamos levantar agora.
+            </p>
+            <button onclick="openWhatsapp()" class="btn-apple inline-flex items-center gap-4 px-12 py-6 rounded-full text-2xl font-bold shadow-2xl hover:shadow-blue-500/30">
+                <i class="fab fa-whatsapp text-3xl"></i>
+                Confirmar Interesse
+            </button>
+        </div>
+    </section>
+
+    <footer class="py-12 text-center text-gray-600 text-sm border-t border-white/5">
+        <p>2026 Startup Restart.</p>
+    </footer>
+
+    <script>
+        // --- INICIALIZAÇÃO ---
+        window.addEventListener('load', () => {
+            startScroller();
+        });
+
+        // --- SCROLLER DE PALAVRAS DINÂMICO ---
+        function startScroller() {
+            const scroller = document.getElementById('word-scroller');
+            const container = document.getElementById('scroller-box');
+            const items = scroller.querySelectorAll('.scroller-item');
+            if (items.length === 0) return;
+            
+            const itemHeight = items[0].offsetHeight;
+            let current = 0;
+
+            // Função para ajustar a largura do container de acordo com a palavra atual
+            const updateWidth = (index) => {
+                const currentWordWidth = items[index].offsetWidth;
+                container.style.width = `${currentWordWidth}px`;
+            };
+
+            // Ajuste inicial
+            updateWidth(0);
+
+            const runScroll = () => {
+                if (current < items.length - 1) {
+                    current++;
+                    
+                    // Ajusta a largura da caixa antes/durante a transição
+                    updateWidth(current);
+                    
+                    // Move a lista verticalmente
+                    scroller.style.top = `-${current * itemHeight}px`;
+                    
+                    if (current === items.length - 1) return; 
+
+                    setTimeout(runScroll, 1000);
+                }
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                if(entries[0].isIntersecting) {
+                    setTimeout(runScroll, 800);
+                    observer.disconnect();
+                }
+            });
+            observer.observe(container);
+        }
+
+        // --- WHATSAPP ---
+        function openWhatsapp() {
+            const phone = "5519986069818";
+            const message = encodeURIComponent("Fala aí diilps! Li sobre o Restart. Quero fazer parte dessa nova jornada.");
+            window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+        }
+
+        // --- REVEAL ON SCROLL ---
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+        // --- PARALLAX ---
+        window.addEventListener('scroll', () => {
+            const s = window.scrollY;
+            const b1 = document.getElementById('blob1');
+            const b2 = document.getElementById('blob2');
+            if(b1) b1.style.transform = `translateY(${s * 0.1}px)`;
+            if(b2) b2.style.transform = `translateY(${s * -0.1}px)`;
+        });
+    </script>
+</body>
+</html>
